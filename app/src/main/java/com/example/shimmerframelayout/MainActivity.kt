@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import okhttp3.*
 import java.io.IOException
 import android.R.attr.data
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.util.Log
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var list: ArrayList<Veg>
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,21 +33,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         layout_loading = findViewById(R.id.layout_loading)
 
-
-        this.runOnUiThread(Runnable {
-            connect()
-        })
-
-        if (list.isNotEmpty()) {
-            (layout_loading as ShimmerFrameLayout).stopShimmer()
-            layout_loading.visibility = View.GONE
-            adapter.list = data as ArrayList<Veg>
-        } else {
-            layout_loading.visibility = View.VISIBLE
-            (layout_loading as ShimmerFrameLayout).startShimmer()
-            recyclerView.visibility = View.GONE
-            adapter.list.clear()
-        }
+        connect()
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -60,16 +48,30 @@ class MainActivity : AppCompatActivity() {
         val request = Request.Builder().url(url).build()
 
         client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("error", "連線失敗")
-            }
 
             override fun onResponse(call: Call, response: Response) {
                 val result = response.body?.string()
                 val data = Gson().fromJson(result, Array<Veg>::class.java).toList()
                 list = data as ArrayList<Veg>
+                if (list.isNotEmpty()) {
+                    this@MainActivity.runOnUiThread(Runnable {
+                        (layout_loading as ShimmerFrameLayout).stopShimmer()
+                        layout_loading.visibility = View.GONE
+                        adapter.list = data
+                    })
+                } else {
+                    this@MainActivity.runOnUiThread(Runnable {
+                        layout_loading.visibility = View.VISIBLE
+                        (layout_loading as ShimmerFrameLayout).startShimmer()
+                        recyclerView.visibility = View.GONE
+                        adapter.list.clear()
+                    })
+                }
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d("error", "連線失敗")
             }
         })
-
     }
 }

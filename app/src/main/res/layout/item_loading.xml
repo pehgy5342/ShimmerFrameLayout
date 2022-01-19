@@ -4,27 +4,40 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="01"
-            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="ID"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="標題"
+                android:textSize="25sp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="蔬菜"
-            android:textSize="35sp" />
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="內容"
+            android:textSize="18sp" />
 
     </LinearLayout>
-
 
 </com.facebook.shimmer.ShimmerFrameLayout>

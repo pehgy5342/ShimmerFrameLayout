@@ -24,11 +24,14 @@ class VegAdapter : RecyclerView.Adapter<VegAdapter.MemberViewHolder>() {
 
     inner class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(veg: Veg) {
-            val name = itemView.findViewById<TextView>(R.id.txt_cropName)
-            val code = itemView.findViewById<TextView>(R.id.txt_cropCode)
+            val id = itemView.findViewById<TextView>(R.id.txt_id)
+            val title = itemView.findViewById<TextView>(R.id.txt_title)
+            val body = itemView.findViewById<TextView>(R.id.txt_body)
 
-            name.text = veg.id
-            code.text = veg.title
+            id.text = veg.id
+            title.text = veg.title
+            body.text = veg.body
+
         }
     }
 }
