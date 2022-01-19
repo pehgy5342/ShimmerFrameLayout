@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MemberAdapter(private val list: ArrayList<MyMember> = arrayListOf()) : RecyclerView.Adapter<MemberAdapter.MemberViewHolder>() {
+class VegAdapter : RecyclerView.Adapter<VegAdapter.MemberViewHolder>() {
 
+    var list: ArrayList<Veg> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_member, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_veg, parent, false)
         return MemberViewHolder(view)
     }
 
@@ -22,14 +23,12 @@ class MemberAdapter(private val list: ArrayList<MyMember> = arrayListOf()) : Rec
 
 
     inner class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(member: MyMember) {
-            val number = itemView.findViewById<TextView>(R.id.txt_number)
-            val name = itemView.findViewById<TextView>(R.id.txt_name)
-            val intro = itemView.findViewById<TextView>(R.id.txt_intro)
+        fun bind(veg: Veg) {
+            val name = itemView.findViewById<TextView>(R.id.txt_cropName)
+            val code = itemView.findViewById<TextView>(R.id.txt_cropCode)
 
-            number.text = member.number
-            name.text = member.name
-            intro.text = member.intro
+            name.text = veg.id
+            code.text = veg.title
         }
     }
 }

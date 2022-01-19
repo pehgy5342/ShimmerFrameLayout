@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/peggychiu/AndroidStudioProjects/ShimmerFrameLayout/app/src/main/res/layout/activity_main.xml" value="0.37135416666666665" />
+        <entry key="..\:/Users/peggychiu/AndroidStudioProjects/ShimmerFrameLayout/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/peggychiu/AndroidStudioProjects/ShimmerFrameLayout/app/src/main/res/layout/item_loading.xml" value="0.37135416666666665" />
         <entry key="..\:/Users/peggychiu/AndroidStudioProjects/ShimmerFrameLayout/app/src/main/res/layout/item_member.xml" value="0.37135416666666665" />
+        <entry key="..\:/Users/peggychiu/AndroidStudioProjects/ShimmerFrameLayout/app/src/main/res/layout/item_veg.xml" value="0.290625" />
       </map>
     </option>
   </component>
